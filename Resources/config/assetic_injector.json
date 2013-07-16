@@ -1,0 +1,23 @@
+{
+    "require_victoire":
+    {
+        "redactor":
+        {
+            "javascripts":
+            {
+                "edit":
+                {
+                    "0": "@VictoireRedactorBundle/Resources/public/js/redactor.js",
+                    "1": "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js"
+                }
+            },
+            "stylesheets":
+            {
+                "edit":
+                {
+                    "0": "@VictoireRedactorBundle/Resources/public/css/redactor.css"
+                }
+            }
+        }
+    }
+}

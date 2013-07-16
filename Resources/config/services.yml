@@ -1,0 +1,8 @@
+services:
+
+    victoire_cms.twig.widget_redactor_manager:
+        class: Victoire\RedactorBundle\Widget\Manager\WidgetRedactorManager
+        arguments: [@service_container]
+
+    widget_redactor_manager:
+        alias: victoire_cms.twig.widget_redactor_manager

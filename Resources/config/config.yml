@@ -1,0 +1,5 @@
+victoire_cms:
+    widgets:
+        redactor:
+            class: "Victoire\RedactorBundle\Entity\WidgetRedactor"
+            name: redactor

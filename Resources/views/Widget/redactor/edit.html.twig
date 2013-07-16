@@ -1,0 +1,18 @@
+<form class="ajax" update="widget-{{id}}" method="POST" action="{{path('Widget_Edit', {'id':id, 'type':'redactor'} )}}">
+{{form_row(form.content, {'attr': {'class':'redactor'} })}}
+{{form_rest(form)}}
+<input type="submit" value="OK" />
+</form>
+
+<script type="text/javascript">
+    $(document).ready(
+        function()
+        {
+            $('.redactor').redactor({
+                lang: 'fr',
+                autoresize: true,
+            });
+        }
+    );
+
+</script>
