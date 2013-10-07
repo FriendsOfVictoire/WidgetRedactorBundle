@@ -1,0 +1,33 @@
+{
+    "name": "victoire/redactor-bundle",
+    "type": "symfony-bundle",
+    "description": "Victoire Cms Redactor component",
+    "keywords": ["cms", "victoire", "redactor"],
+    "homepage": "http://appventus.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Andrieux",
+            "email": "paul@appventus.com"
+        }
+    ],
+    "require": {
+        "php"                                 : ">=5.3.3",
+        "symfony/framework-bundle"            : "~2.3",
+
+        "victoire/cms-bundle"                : "1.0.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "Victoire\\RedactorBundle": "" }
+    },
+    "minimum-stability": "dev",
+
+
+    "target-dir": "Victoire/RedactorBundle",
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
