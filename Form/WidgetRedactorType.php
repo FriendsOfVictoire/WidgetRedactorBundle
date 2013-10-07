@@ -5,47 +5,58 @@ namespace Victoire\RedactorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Victoire\CmsBundle\Form\EntityProxyFormType;
+use Victoire\CmsBundle\Form\WidgetType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 
 /**
  * WidgetRedactor form type
  */
-class WidgetRedactorType extends AbstractType
+class WidgetRedactorType extends WidgetType
 {
 
     /**
      * define form fields
      * @param FormBuilderInterface $builder
      * @param array $options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('content')
-            ->add('page', null,
-                array(
-                    "label" => "",
-                    "attr" =>array("class" => "hide"))
-                )
-            ->add('slot', 'hidden')
-        ;
-    }
+        //choose form mode
+        if ($this->entity === null) {
+            //if no entity is given, we generate the static form
+            $builder
+                ->add('content', null, array(
+                        'attr' => array('class' => 'redactor')
+                    ));
+        } else {
+            //else, WidgetType class will embed a EntityProxyType for given entity
+            parent::buildForm($builder, $options);
+        }
 
+    }
 
     /**
      * bind form to WidgetRedactor entity
      * @param OptionsResolverInterface $resolver
+     *
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Victoire\RedactorBundle\Entity\WidgetRedactor'
+            'data_class' => 'Victoire\RedactorBundle\Entity\WidgetRedactor',
+            'widget' => 'redactor'
         ));
     }
 
 
     /**
      * get form name
+     * @return string type
      */
     public function getName()
     {

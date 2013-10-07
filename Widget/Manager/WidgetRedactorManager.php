@@ -44,7 +44,7 @@ protected $container;
      */
     public function render($widget)
     {
-        return $this->container->get('templating')->render(
+        return $this->container->get('victoire_templating')->render(
             "VictoireRedactorBundle:Widget:redactor/show.html.twig",
             array(
                 "widget" => $widget
@@ -56,25 +56,32 @@ protected $container;
      * render WidgetRedactor form
      * @param Form           $form
      * @param WidgetRedactor $widget
+     * @param BusinessEntity $entity
      * @return form
      */
-    public function renderForm($form, $widget)
+    public function renderForm($form, $widget, $entity = null)
     {
-
-        return $this->container->get('templating')->render(
+        return $this->container->get('victoire_templating')->render(
             "VictoireRedactorBundle:Widget:redactor/edit.html.twig",
-            array("widget" => $widget, 'form' => $form->createView(), 'id' => $widget->getId())
+            array(
+                "widget" => $widget,
+                'form'   => $form->createView(),
+                'id'     => $widget->getId(),
+                'entity' => $entity
+            )
         );
     }
 
     /**
      * create a form with given widget
      * @param WidgetRedactor $widget
+     * @param string         $entityName
+     * @param string         $namespace
      * @return $form
      */
-    public function buildForm($widget)
+    public function buildForm($widget, $entityName = null, $namespace = null)
     {
-        $form = $this->container->get('form.factory')->create(new WidgetRedactorType(), $widget);
+        $form = $this->container->get('form.factory')->create(new WidgetRedactorType($entityName, $namespace), $widget);
 
         return $form;
     }
@@ -85,20 +92,22 @@ protected $container;
      * @param WidgetRedactor $widget
      * @param string         $slot
      * @param Page           $page
+     * @param string         $entity
      *
      * @return new form
      */
-    public function renderNewForm($form, $widget, $slot, $page)
+    public function renderNewForm($form, $widget, $slot, $page, $entity = null)
     {
 
-        return $this->container->get('templating')->render(
+        return $this->container->get('victoire_templating')->render(
             "VictoireRedactorBundle:Widget:redactor/new.html.twig",
             array(
-                "widget" => $widget,
-                'form' => $form->createView(),
-                "slot" => $slot,
+                "widget"          => $widget,
+                'form'            => $form->createView(),
+                "slot"            => $slot,
+                "entity"          => $entity,
                 "renderContainer" => true,
-                "page" => $page
+                "page"            => $page
             )
         );
     }

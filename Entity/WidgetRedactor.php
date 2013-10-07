@@ -2,7 +2,7 @@
 namespace Victoire\RedactorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Victoire\CmsBundle\Entity\WidgetText;
+use Victoire\TextBundle\Entity\WidgetText;
 
 /**
  * WidgetText
@@ -12,4 +12,5 @@ use Victoire\CmsBundle\Entity\WidgetText;
  */
 class WidgetRedactor extends WidgetText
 {
+    use \Victoire\CmsBundle\Entity\Traits\WidgetTrait;
 }

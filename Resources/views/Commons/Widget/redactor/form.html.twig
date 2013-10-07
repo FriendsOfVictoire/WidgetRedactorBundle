@@ -1,0 +1,19 @@
+{% if entity %}
+{{form_widget(form.entity)}}
+{% else %}
+{{form_widget(form.content)}}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+            $('.redactor').redactor({
+                lang: 'fr',
+                autoresize: true,
+            });
+        }
+    );
+</script>
+
+{% endif %}
+{{form_rest(form)}}
+{{form_errors(form)}}
+

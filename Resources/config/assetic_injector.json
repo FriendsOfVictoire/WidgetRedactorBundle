@@ -1,23 +1,22 @@
 {
-    "require_victoire":
+    "require_all":
     {
-        "redactor":
+        "javascripts":
         {
-            "javascripts":
-            {
-                "edit":
-                {
-                    "0": "@VictoireRedactorBundle/Resources/public/js/redactor.js",
-                    "1": "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js"
-                }
-            },
-            "stylesheets":
-            {
-                "edit":
-                {
-                    "0": "@VictoireRedactorBundle/Resources/public/css/redactor.css"
-                }
-            }
+            "victoire-edit":
+            [
+                "@VictoireRedactorBundle/Resources/public/js/edit/redactor.js"
+            ],
+            "foot":
+            [
+                "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js",
+                "@VictoireRedactorBundle/Resources/public/js/redactor.js"
+            ]
+        },
+        "stylesheets":
+        {
+            "head": "@VictoireRedactorBundle/Resources/public/css/redactor.css"
         }
+
     }
 }
