@@ -4,13 +4,13 @@
         "javascripts":
         {
             "victoire-edit":
-            [
-                "@VictoireRedactorBundle/Resources/public/js/edit/redactor.js"
-            ],
+            {
+                "redactor": "@VictoireRedactorBundle/Resources/public/js/edit/redactor.js"
+            },
             "foot":
             [
                 "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js",
-                "@VictoireRedactorBundle/Resources/public/js/redactor.js"
+                "@VictoireRedactorBundle/Resources/public/js/redactor/redactor.js"
             ]
         },
         "stylesheets":

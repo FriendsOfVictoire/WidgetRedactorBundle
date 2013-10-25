@@ -3079,6 +3079,7 @@ var RLANG = {
 		// INSERT IMAGE
 		imageEdit: function(e)
 		{
+			console.log('imageEdit');
 			var $el = $(e.target);
 			var parent = $el.parent();
 
@@ -3302,6 +3303,8 @@ var RLANG = {
 		},
 		imageUploadCallbackLink: function()
 		{
+			console.log('imageUploadCallbackLink triggered');
+			console.log($('#redactor_file_link').val());
 			if ($('#redactor_file_link').val() !== '')
 			{
 				var data = '<img src="' + $('#redactor_file_link').val() + '" />';

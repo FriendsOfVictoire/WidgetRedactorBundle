@@ -20,12 +20,8 @@
 {% endblock form %}
 <script type="text/javascript">
     $(document).ready(function(){
-            $('.redactor').redactor({
-                lang: 'fr',
-                autoresize: true,
-            });
-        }
-    );
+        initRedactor('.redactor');
+    });
 </script>
 </div>
 {% endblock body %}
