@@ -27,7 +27,7 @@ class WidgetRedactorType extends WidgetType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         //choose form mode
-        if ($this->entity === null) {
+        if ($this->entity_name === null) {
             //if no entity is given, we generate the static form
             $builder
                 ->add('content', null, array(
