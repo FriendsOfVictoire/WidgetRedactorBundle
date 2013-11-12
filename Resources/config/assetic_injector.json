@@ -4,18 +4,25 @@
         "javascripts":
         {
             "victoire-edit":
-            {
-                "redactor": "@VictoireRedactorBundle/Resources/public/js/edit/redactor.js"
-            },
-            "foot":
             [
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/redactor.js",
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/clips/clips.js",
+                "@VictoireRedactorBundle/Resources/public/js/plugins/kunstmaan_picture_picker.js",
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontcolor/fontcolor.js",
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontfamily/fontfamily.js",
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontsize/fontsize.js",
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fullscreen/fullscreen.js",
                 "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js",
-                "@VictoireRedactorBundle/Resources/public/js/redactor/redactor.js"
+                "@VictoireRedactorBundle/Resources/public/js/redactor.js"
             ]
         },
         "stylesheets":
         {
-            "head": "@VictoireRedactorBundle/Resources/public/css/redactor.css"
+            "victoire-edit":
+            [
+                "@VictoireRedactorBundle/Resources/public/vendor/redactor/redactor.css",
+                "@VictoireRedactorBundle/Resources/public/css/redactor.css"
+            ]
         }
 
     }
