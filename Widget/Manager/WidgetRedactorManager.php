@@ -32,7 +32,7 @@ protected $container;
     {
         $widget = new WidgetRedactor();
         $widget->setPage($page);
-        $widget->setslot($slot);
+        $widget->setSlot($slot);
 
         return $widget;
     }
