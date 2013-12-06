@@ -33,10 +33,10 @@ class WidgetRedactorType extends WidgetType
                 ->add('content', null, array(
                         'attr' => array('class' => 'redactor')
                     ));
-        } else {
-            //else, WidgetType class will embed a EntityProxyType for given entity
-            parent::buildForm($builder, $options);
+
         }
+
+        parent::buildForm($builder, $options);
 
     }
 

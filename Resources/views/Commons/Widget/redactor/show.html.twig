@@ -12,7 +12,7 @@
 {% block actions %}{{cms_widget_actions(widget)}}{% endblock actions %}
 
 {% block content %}
-{% include "VictoireRedactorBundle:Commons:Widget/redactor/theme/"~theme|default('default')~".html.twig" %}
+{{widget.content|raw}}
 {% endblock content %}
 </div>
 

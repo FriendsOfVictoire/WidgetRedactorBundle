@@ -3,11 +3,12 @@ namespace Victoire\RedactorBundle\Widget\Manager;
 
 use Victoire\RedactorBundle\Form\WidgetRedactorType;
 use Victoire\RedactorBundle\Entity\WidgetRedactor;
+use Victoire\CmsBundle\Widget\Managers\ManagerInterface;
 
 /**
  * CRUD operations on WidgetRedactor Widget
  */
-class WidgetRedactorManager
+class WidgetRedactorManager implements ManagerInterface
 {
 protected $container;
 
@@ -110,6 +111,11 @@ protected $container;
                 "page"            => $page
             )
         );
+    }
+
+    public function getWidgetName()
+    {
+        return 'redactor';
     }
 
 }
