@@ -43,12 +43,13 @@ protected $container;
      *
      * @return widget show
      */
-    public function render($widget)
+    public function render($widget, $page)
     {
         return $this->container->get('victoire_templating')->render(
             "VictoireRedactorBundle:Widget:redactor/show.html.twig",
             array(
-                "widget" => $widget
+                "widget" => $widget,
+                "page" => $page
             )
         );
     }
@@ -60,7 +61,7 @@ protected $container;
      * @param BusinessEntity $entity
      * @return form
      */
-    public function renderForm($form, $widget, $entity = null)
+    public function renderForm($form, $widget, $page, $entity = null)
     {
         return $this->container->get('victoire_templating')->render(
             "VictoireRedactorBundle:Widget:redactor/edit.html.twig",
@@ -68,7 +69,8 @@ protected $container;
                 "widget" => $widget,
                 'form'   => $form->createView(),
                 'id'     => $widget->getId(),
-                'entity' => $entity
+                'entity' => $entity,
+                'pageId' => $page->getId(),
             )
         );
     }

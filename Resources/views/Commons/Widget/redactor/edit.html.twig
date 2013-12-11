@@ -9,7 +9,7 @@
 #}
 <div class="edit-widget">
 {% block form %}
-<form class="ajax" update="widget-{{id}}" method="POST" action="{{path('victoire_cms_widget_edit', {'id':id, 'type':entity} )}}">
+<form class="ajax" update="widget-{{id}}-container" method="POST" action="{{path('victoire_cms_widget_edit', {'id':id, 'type':entity, 'page': pageId} )}}">
         {% include "VictoireRedactorBundle:Commons:Widget/redactor/form.html.twig" %}
 {% block submit %}
 <input class="btn btn-success" type="submit" value="{{ 'ok'|trans|desc('Ok') }}" />
