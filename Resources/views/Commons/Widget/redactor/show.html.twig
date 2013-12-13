@@ -9,7 +9,7 @@
 #}
 
 <div class="widget widget-redactor" id="widget-{{widget.id}}">
-{% block actions %}{{cms_widget_actions(widget, page)}}{% endblock actions %}
+{% block actions %}{{cms_widget_actions(widget)}}{% endblock actions %}
 
 {% block content %}
 {{widget.content|raw}}
