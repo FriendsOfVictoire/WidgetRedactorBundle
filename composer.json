@@ -1,5 +1,5 @@
 {
-    "name": "victoire/redactor-bundle",
+    "name": "victoire/redactor-widget",
     "type": "symfony-bundle",
     "description": "Victoire Cms Redactor component",
     "keywords": ["cms", "victoire", "redactor"],
