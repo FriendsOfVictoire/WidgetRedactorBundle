@@ -12,6 +12,8 @@ function initRedactor(item_id, buttons, plugins, lang, autoresize){
         autoresize: autoresize,
         buttons: buttons,
         plugins: plugins,
+        convertDivs: false,
+        paragraphy: false,
         buttonsCustom: {
             image: {
                 title: 'Image',
