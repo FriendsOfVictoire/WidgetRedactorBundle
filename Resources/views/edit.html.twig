@@ -1,0 +1,11 @@
+{% extends 'VictoireCmsBundle:Widget:edit.html.twig' %}
+
+{% block form %}
+  {% include "VictoireRedactorBundle::form.html.twig" %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        initRedactor('.redactor');
+    });
+</script>
+{% endblock form %}
