@@ -10,6 +10,10 @@
         <source>widget.redactor.new.action.label</source>
         <target state="new">Texte riche</target>
       </trans-unit>
+      <trans-unit resname="modal.form.widget.type.redactor.label">
+        <source>modal.form.widget.type.redactor.label</source>
+        <target state="new">Texte riche</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
