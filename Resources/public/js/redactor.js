@@ -19,7 +19,7 @@ function initRedactor(item_id, buttons, plugins, lang, autoresize){
                 title: 'Image',
                 callback: function(buttonName, buttonDOM, buttonObject) {
 
-                    openDGDialog(Routing.generate('KunstmaanMediaBundle_chooser'), 1050, 600, function(param){
+                    openDGDialog(Routing.generate('VictoireMediaBundle_chooser'), 1050, 600, function(param){
                         html = '<p><img id="media-' + dialogWin.returnedValue.id + '" src="' + dialogWin.returnedValue.imgpath + '" /></p>';
                         $('.redactor').insertHtml(html);
                     });

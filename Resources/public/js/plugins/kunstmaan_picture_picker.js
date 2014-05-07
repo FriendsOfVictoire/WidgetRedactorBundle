@@ -7,7 +7,7 @@ RedactorPlugins.media = {
         var parent = $el.parent();
         var id = $el.attr('id').replace('media-', '');
 
-        openDGDialog(Routing.generate('KunstmaanMediaBundle_media_show', { mediaId: id }), 1050, 600);
+        openDGDialog(Routing.generate('VictoireMediaBundle_media_show', { mediaId: id }), 1050, 600);
     }
 
 }
