@@ -3,7 +3,7 @@ namespace Victoire\RedactorBundle\Widget\Manager;
 
 use Victoire\RedactorBundle\Form\WidgetRedactorType;
 use Victoire\RedactorBundle\Entity\WidgetRedactor;
-use Victoire\CmsBundle\Widget\Managers\ManagerInterface;
+use Victoire\Bundle\CoreBundle\Widget\Managers\ManagerInterface;
 
 /**
  * CRUD operations on WidgetRedactor Widget

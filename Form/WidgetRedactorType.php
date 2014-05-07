@@ -5,8 +5,8 @@ namespace Victoire\RedactorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Victoire\CmsBundle\Form\EntityProxyFormType;
-use Victoire\CmsBundle\Form\WidgetType;
+use Victoire\Bundle\CoreBundle\Form\EntityProxyFormType;
+use Victoire\Bundle\CoreBundle\Form\WidgetType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 
@@ -61,6 +61,6 @@ class WidgetRedactorType extends WidgetType
      */
     public function getName()
     {
-        return 'appventus_victoirecmsbundle_widgetredactortype';
+        return 'appventus_victoireCoreBundle_widgetredactortype';
     }
 }

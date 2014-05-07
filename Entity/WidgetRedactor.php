@@ -12,5 +12,5 @@ use Victoire\TextBundle\Entity\WidgetText;
  */
 class WidgetRedactor extends WidgetText
 {
-    use \Victoire\CmsBundle\Entity\Traits\WidgetTrait;
+    use \Victoire\Bundle\CoreBundle\Entity\Traits\WidgetTrait;
 }
