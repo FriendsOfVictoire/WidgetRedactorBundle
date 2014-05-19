@@ -61,6 +61,6 @@ class WidgetRedactorType extends WidgetType
      */
     public function getName()
     {
-        return 'appventus_victoireCoreBundle_widgetredactortype';
+        return 'appventus_victoirecorebundle_widgetredactortype';
     }
 }
