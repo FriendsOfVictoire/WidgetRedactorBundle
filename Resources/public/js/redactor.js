@@ -7,7 +7,7 @@ function initRedactor(item_id, buttons, plugins, lang, autoresize){
     lang        = typeof lang !== 'undefined' ? lang : 'fr';
     autoresize  = typeof autoresize !== 'undefined' ? autoresize : true;
 
-    $(item_id).redactor({
+    $vic(item_id).redactor({
         lang: lang,
         autoresize: autoresize,
         buttons: buttons,
