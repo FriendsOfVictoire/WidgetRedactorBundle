@@ -1,7 +1,7 @@
 {% extends 'VictoireCoreBundle:Widget:new.html.twig' %}
 
 {% block form %}
-  {% include "VictoireRedactorBundle::form.html.twig" %}
+  {{ parent() }}
 
 <script type="text/javascript">
     $(document).ready(function(){
