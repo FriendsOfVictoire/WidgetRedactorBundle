@@ -70,4 +70,4 @@ $.Redactor.opts.langs['fr'] = {
 	filename: 'Nom de fichier (optionnel)',
 	edit: 'Edit'
 };
-})( jQuery );
+})( $vic );
