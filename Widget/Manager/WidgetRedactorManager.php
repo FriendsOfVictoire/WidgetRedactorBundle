@@ -101,7 +101,7 @@ class WidgetRedactorManager extends BaseWidgetManager
      * @param string         $namespace
      * @return $form
      */
-    public function buildForm($widget, $entityName = null, $namespace = null)
+    public function buildWidgetForm($widget, $entityName = null, $namespace = null)
     {
         //test parameters
         if ($entityName !== null) {
@@ -111,9 +111,6 @@ class WidgetRedactorManager extends BaseWidgetManager
         }
 
         $form = $this->container->get('form.factory')->create(new WidgetRedactorType($entityName, $namespace), $widget);
-
-        $dispatcher = $this->container->get('event_dispatcher');
-        $dispatcher->dispatch(VictoireCmsEvents::WIDGET_BUILD_FORM, new WidgetBuildFormEvent($widget, $form));
 
         return $form;
     }
