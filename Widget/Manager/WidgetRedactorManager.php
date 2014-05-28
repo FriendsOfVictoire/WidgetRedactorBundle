@@ -58,10 +58,10 @@ class WidgetRedactorManager extends BaseWidgetManager
         	    $content = $this->getWidgetEntityContent($widget);
         	    break;
         	case WidgetRedactor::MODE_QUERY:
-        	    throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget redactor manager.');
+        	    throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
         	    break;
         	default:
-        	    throw new \Exception('The mode ['.$mode.'] is not supported by the widget redactor manager.');
+        	    throw new \Exception('The mode ['.$mode.'] is not supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
         }
 
 
