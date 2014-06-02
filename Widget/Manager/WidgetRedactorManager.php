@@ -50,20 +50,31 @@ class WidgetRedactorManager extends BaseWidgetManager
         $content = '';
 
         switch ($mode) {
-        	case WidgetRedactor::MODE_STATIC:
+        	case Widget::MODE_STATIC:
         	    $content = $widget->getContent();
         	    break;
-        	case WidgetRedactor::MODE_ENTITY:
+        	case Widget::MODE_ENTITY:
         	    //get the content of the widget with its entity
         	    $content = $this->getWidgetEntityContent($widget);
         	    break;
-        	case WidgetRedactor::MODE_QUERY:
+    	    case Widget::MODE_BUSINESS_ENTITY:
+    	        //get the entity
+    	        $entity = $widget->getEntity();
+
+    	        //display a generic content if no entity were specified
+    	        if ($entity === null) {
+    	            $content = $this->getWidgetGenericBusinessEntityContent($widget);
+    	        } else {
+    	            //get the content of the widget with its entity
+    	            $content = $this->getWidgetEntityContent($widget);
+    	        }
+        	    break;
+        	case Widget::MODE_QUERY:
         	    throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
         	    break;
         	default:
         	    throw new \Exception('The mode ['.$mode.'] is not supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
         }
-
 
         return $templating->render(
             "VictoireRedactorBundle::show.html.twig",
@@ -176,6 +187,38 @@ class WidgetRedactorManager extends BaseWidgetManager
             $attributeValue =  $this->getEntityAttributeValue($entity, $field);
             //concantene values
             $content .= $attributeValue;
+        }
+
+        return $content;
+    }
+
+    /**
+     * Get the generic name of the business EntityWidget
+     *
+     * @param Widget $widget
+     *
+     * @return string
+     */
+    protected function getWidgetGenericBusinessEntityContent(Widget $widget)
+    {
+        //the result
+        $content = '';
+
+        $entityName = $widget->getBusinessEntityName();
+
+        $content = $entityName.' -> ';
+
+        $fields = $widget->getFields();
+
+        //test that the widget has some fields
+        if (count($fields) === 0) {
+            throw new \Exception('The widget ['.$widget->getId().'] has no field to display.');
+        }
+
+        //parse the field
+        foreach ($fields as $field) {
+            //concantene values
+            $content .= $field;
         }
 
         return $content;
