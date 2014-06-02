@@ -223,4 +223,14 @@ class WidgetRedactorManager extends BaseWidgetManager
 
         return $content;
     }
+
+    /**
+     * Get the extra classes for the css
+     *
+     * @return string The classes
+     */
+    public function getExtraCssClass()
+    {
+        return 'vic-widget-redactor';
+    }
 }
