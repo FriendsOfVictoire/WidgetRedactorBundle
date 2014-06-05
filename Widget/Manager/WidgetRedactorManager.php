@@ -93,6 +93,7 @@ class WidgetRedactorManager extends BaseWidgetManager
      */
     protected function getWidgetQueryContent(Widget $widget)
     {
+        $mode = $widget->getMode();
         throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget manager. Widget ID:['.$widget->getId().']');
     }
 

@@ -8,9 +8,10 @@ services:
     widget_redactor_manager:
         alias: victoire_core.twig.widget_redactor_manager
         
+    #alias to the entity
     victoire.widget.redactor:
         class: Victoire\RedactorBundle\Entity\WidgetRedactor
-
+    #alias to the form
     victoire.widget.form.redactor:
         class: Victoire\RedactorBundle\Form\WidgetRedactorType
         tags:
