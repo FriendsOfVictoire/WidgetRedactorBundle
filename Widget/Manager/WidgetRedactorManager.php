@@ -16,144 +16,37 @@ use Victoire\Bundle\CoreBundle\VictoireCmsEvents;
 class WidgetRedactorManager extends BaseWidgetManager
 {
     /**
-     * Get a new widget entity
+     * Get the static content of the widget
      *
-     * @return Widget
+     * @param Widget $widget
+     * @return string The static content
      */
-    protected function getNewWidgetEntity()
+    protected function getWidgetStaticContent(Widget $widget)
     {
-        $widget = new WidgetRedactor();
+        $content = $widget->getContent();
 
-        return $widget;
+        return $content;
     }
 
     /**
-     * render the WidgetRedactor
-     * @param WidgetRedactor $widget
-     *
-     * @return widget show
+     * Get the business entity content
+     * @param Widget $widget
+     * @return Ambigous <string, unknown, \Victoire\Bundle\CoreBundle\Widget\Managers\mixed, mixed>
      */
-    public function render(Widget $widget)
+    protected function getWidgetBusinessEntityContent(Widget $widget)
     {
-        //the templating service
-        $templating = $this->container->get('victoire_templating');
+        //get the entity
+        $entity = $widget->getEntity();
 
-        //the mode of display of the widget
-        $mode = $widget->getMode();
-
-        //the widget must have a mode
-        if ($mode === null) {
-            throw new \Exception('The widget ['.$widget->getId().'] has no mode.');
+        //display a generic content if no entity were specified
+        if ($entity === null) {
+            $content = $this->getWidgetGenericBusinessEntityContent($widget);
+        } else {
+            //get the content of the widget with its entity
+            $content = $this->getWidgetEntityContent($widget);
         }
 
-        //the content of the widget
-        $content = '';
-
-        switch ($mode) {
-        	case Widget::MODE_STATIC:
-        	    $content = $widget->getContent();
-        	    break;
-        	case Widget::MODE_ENTITY:
-        	    //get the content of the widget with its entity
-        	    $content = $this->getWidgetEntityContent($widget);
-        	    break;
-    	    case Widget::MODE_BUSINESS_ENTITY:
-    	        //get the entity
-    	        $entity = $widget->getEntity();
-
-    	        //display a generic content if no entity were specified
-    	        if ($entity === null) {
-    	            $content = $this->getWidgetGenericBusinessEntityContent($widget);
-    	        } else {
-    	            //get the content of the widget with its entity
-    	            $content = $this->getWidgetEntityContent($widget);
-    	        }
-        	    break;
-        	case Widget::MODE_QUERY:
-        	    throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
-        	    break;
-        	default:
-        	    throw new \Exception('The mode ['.$mode.'] is not supported by the widget redactor manager. Widget ID:['.$widget->getId().']');
-        }
-
-        return $templating->render(
-            "VictoireRedactorBundle::show.html.twig",
-            array(
-                "widget" => $widget,
-                "content" => $content
-            )
-        );
-    }
-
-    /**
-     * render WidgetRedactor form
-     * @param Form           $form
-     * @param WidgetRedactor $widget
-     * @param BusinessEntity $entity
-     * @return form
-     */
-    public function renderForm($form, $widget, $entity = null)
-    {
-        return $this->container->get('victoire_templating')->render(
-            "VictoireRedactorBundle::edit.html.twig",
-            array(
-                "widget" => $widget,
-                'form'   => $form->createView(),
-                'id'     => $widget->getId(),
-                'entity' => $entity
-            )
-        );
-    }
-
-    /**
-     * create a form with given widget
-     * @param WidgetRedactor $widget
-     * @param string         $entityName
-     * @param string         $namespace
-     * @return $form
-     */
-    public function buildWidgetForm($widget, $entityName = null, $namespace = null)
-    {
-        //test parameters
-        if ($entityName !== null) {
-            if ($namespace === null) {
-                throw new \Exception('The namespace is mandatory if the entityName is given');
-            }
-        }
-
-        $form = $this->container->get('form.factory')->create(new WidgetRedactorType($entityName, $namespace), $widget);
-
-        return $form;
-    }
-
-    /**
-     * create form new for WidgetRedactor
-     * @param Form           $form
-     * @param WidgetRedactor $widget
-     * @param string         $slot
-     * @param Page           $page
-     * @param string         $entity
-     *
-     * @return new form
-     */
-    public function renderNewForm($form, $widget, $slot, $page, $entity = null)
-    {
-        return $this->container->get('victoire_templating')->render(
-            "VictoireRedactorBundle::new.html.twig",
-            array(
-                "widget"          => $widget,
-                'form'            => $form->createView(),
-                "slot"            => $slot,
-                "entity"          => $entity,
-                "renderContainer" => true,
-                "page"            => $page
-            )
-        );
-    }
-
-    public function getWidgetName()
-    {
-        return 'redactor';
+        return $content;
     }
 
     /**
@@ -193,6 +86,28 @@ class WidgetRedactorManager extends BaseWidgetManager
     }
 
     /**
+     * Get the content of the widget for the query mode
+     *
+     * @param Widget $widget
+     * @throws \Exception
+     */
+    protected function getWidgetQueryContent(Widget $widget)
+    {
+        throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget manager. Widget ID:['.$widget->getId().']');
+    }
+
+
+    /**
+     * The name of the widget
+     *
+     * @return string
+     */
+    public function getWidgetName()
+    {
+        return 'redactor';
+    }
+
+    /**
      * Get the generic name of the business EntityWidget
      *
      * @param Widget $widget
@@ -222,15 +137,5 @@ class WidgetRedactorManager extends BaseWidgetManager
         }
 
         return $content;
-    }
-
-    /**
-     * Get the extra classes for the css
-     *
-     * @return string The classes
-     */
-    public function getExtraCssClass()
-    {
-        return 'vic-widget-redactor';
     }
 }

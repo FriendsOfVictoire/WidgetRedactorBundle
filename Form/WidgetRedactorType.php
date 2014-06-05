@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormEvent;
  */
 class WidgetRedactorType extends WidgetType
 {
-
     /**
      * define form fields
      * @param FormBuilderInterface $builder
@@ -26,14 +25,22 @@ class WidgetRedactorType extends WidgetType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $namespace = $options['namespace'];
+        $entityName = $options['entityName'];
+
+        if ($entityName !== null) {
+            if ($namespace === null) {
+                throw new \Exception('The namespace is mandatory if the entity_name is given.');
+            }
+        }
+
         //choose form mode
-        if ($this->entity_name === null) {
+        if ($entityName === null) {
             //if no entity is given, we generate the static form
             $builder
                 ->add('content', null, array(
                         'attr' => array('class' => 'redactor')
                     ));
-
         }
 
         parent::buildForm($builder, $options);
@@ -47,6 +54,8 @@ class WidgetRedactorType extends WidgetType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        parent::setDefaultOptions($resolver);
+
         $resolver->setDefaults(array(
             'data_class'         => 'Victoire\RedactorBundle\Entity\WidgetRedactor',
             'widget'             => 'redactor',
@@ -54,13 +63,12 @@ class WidgetRedactorType extends WidgetType
         ));
     }
 
-
     /**
      * get form name
      * @return string type
      */
     public function getName()
     {
-        return 'appventus_victoirecorebundle_widgetredactortype';
+        return 'victoire_widget_form_redactor';
     }
 }
