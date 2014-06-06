@@ -9,11 +9,12 @@ use Victoire\Bundle\CoreBundle\Widget\Managers\BaseWidgetManager;
 use Victoire\Bundle\CoreBundle\Entity\Widget;
 use Victoire\Bundle\CoreBundle\Event\WidgetBuildFormEvent;
 use Victoire\Bundle\CoreBundle\VictoireCmsEvents;
+use Victoire\Bundle\CoreBundle\Widget\Managers\WidgetManagerInterface;
 
 /**
  * CRUD operations on WidgetRedactor Widget
  */
-class WidgetRedactorManager extends BaseWidgetManager
+class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerInterface
 {
     /**
      * Get the static content of the widget
@@ -96,7 +97,6 @@ class WidgetRedactorManager extends BaseWidgetManager
         $mode = $widget->getMode();
         throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget manager. Widget ID:['.$widget->getId().']');
     }
-
 
     /**
      * The name of the widget
