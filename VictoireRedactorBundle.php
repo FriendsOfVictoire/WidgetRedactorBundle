@@ -1,9 +1,9 @@
 <?php
 
-namespace Victoire\RedactorBundle;
+namespace Victoire\Widget\RedactorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class VictoireRedactorBundle extends Bundle
+class VictoireWidgetRedactorBundle extends Bundle
 {
 }

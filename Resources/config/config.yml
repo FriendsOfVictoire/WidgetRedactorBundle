@@ -1,7 +1,7 @@
 victoire_core:
     widgets:
         redactor:
-            class: "Victoire\RedactorBundle\Entity\WidgetRedactor"
+            class: "Victoire\Widget\RedactorBundle\Entity\WidgetRedactor"
             name: redactor
 
 jms_translation:

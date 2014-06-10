@@ -17,10 +17,10 @@
         "victoire/cms-bundle"                 : "~0.1"
     },
     "autoload": {
-        "psr-0": { "Victoire\\RedactorBundle": "" }
+        "psr-0": { "Victoire\\Widget\\RedactorBundle": "" }
     },
     "minimum-stability": "dev",
 
 
-    "target-dir": "Victoire/RedactorBundle"
+    "target-dir": "Victoire/Widget/RedactorBundle"
 }

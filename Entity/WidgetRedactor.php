@@ -1,5 +1,5 @@
 <?php
-namespace Victoire\RedactorBundle\Entity;
+namespace Victoire\Widget\RedactorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Victoire\TextBundle\Entity\WidgetText;

@@ -1,14 +1,10 @@
 <?php
 
-namespace Victoire\RedactorBundle\Form;
+namespace Victoire\Widget\RedactorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Victoire\Bundle\CoreBundle\Form\EntityProxyFormType;
 use Victoire\Bundle\CoreBundle\Form\WidgetType;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
 
 
 /**
@@ -57,7 +53,7 @@ class WidgetRedactorType extends WidgetType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'data_class'         => 'Victoire\RedactorBundle\Entity\WidgetRedactor',
+            'data_class'         => 'Victoire\Widget\RedactorBundle\Entity\WidgetRedactor',
             'widget'             => 'redactor',
             'translation_domain' => 'victoire'
         ));
