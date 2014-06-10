@@ -5,23 +5,23 @@
         {
             "victoire-edit":
             [
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/redactor.js",
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/clips/clips.js",
-                "@VictoireRedactorBundle/Resources/public/js/plugins/kunstmaan_picture_picker.js",
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontcolor/fontcolor.js",
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontfamily/fontfamily.js",
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fontsize/fontsize.js",
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/plugins/fullscreen/fullscreen.js",
-                "@VictoireRedactorBundle/Resources/public/js/redactor.fr.js",
-                "@VictoireRedactorBundle/Resources/public/js/redactor.js"
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/redactor.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/plugins/clips/clips.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/js/plugins/kunstmaan_picture_picker.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/plugins/fontcolor/fontcolor.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/plugins/fontfamily/fontfamily.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/plugins/fontsize/fontsize.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/plugins/fullscreen/fullscreen.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/js/redactor.fr.js",
+                "@VictoireWidgetRedactorBundle/Resources/public/js/redactor.js"
             ]
         },
         "stylesheets":
         {
             "victoire-edit":
             [
-                "@VictoireRedactorBundle/Resources/public/vendor/redactor/redactor.css",
-                "@VictoireRedactorBundle/Resources/public/css/redactor.css"
+                "@VictoireWidgetRedactorBundle/Resources/public/vendor/redactor/redactor.css",
+                "@VictoireWidgetRedactorBundle/Resources/public/css/redactor.css"
             ]
         }
 
