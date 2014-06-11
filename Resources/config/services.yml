@@ -1,5 +1,4 @@
 services:
-
     victoire_core.twig.widget_redactor_manager:
         class: Victoire\Widget\RedactorBundle\Widget\Manager\WidgetRedactorManager
         arguments: 

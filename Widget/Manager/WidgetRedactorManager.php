@@ -120,7 +120,7 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
      */
     public function getWidgetName()
     {
-        return 'redactor';
+        return 'Redactor';
     }
 
     /**
