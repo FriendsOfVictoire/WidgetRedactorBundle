@@ -18,6 +18,8 @@ class WidgetRedactorType extends WidgetType
      * @param array $options
      *
      * @return void
+     *
+     * @throws \Exception
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

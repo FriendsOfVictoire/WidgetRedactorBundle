@@ -71,6 +71,8 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
      * @param Widget $widget
      *
      * @return string
+     *
+     * @throws \Exception
      */
     protected function getWidgetEntityContent(Widget $widget)
     {
@@ -129,6 +131,8 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
      * @param Widget $widget
      *
      * @return string
+     *
+     * @throws \Exception
      */
     protected function getWidgetGenericBusinessEntityContent(Widget $widget)
     {

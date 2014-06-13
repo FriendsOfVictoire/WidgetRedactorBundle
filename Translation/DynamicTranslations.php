@@ -5,6 +5,9 @@ use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use JMS\TranslationBundle\Model\FileSource;
 
+/**
+ *
+ */
 class DynamicTranslations implements TranslationContainerInterface
 {
     /**
