@@ -85,6 +85,23 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
             throw new \Exception('The widget ['.$widget->getId().'] has no entity to display.');
         }
 
+        $content = $this->getEntityContent($widget, $entity);
+
+        return $content;
+    }
+
+    /**
+     * Get the content for an entity and a widget given
+     *
+     * @param Widget $widget
+     * @param unknown $entity
+     * @throws \Exception
+     * @return \Victoire\Bundle\CoreBundle\Widget\Managers\mixed
+     */
+    protected function getEntityContent(Widget $widget, $entity)
+    {
+        $content = '';
+
         $fields = $widget->getFields();
 
         //test that the widget has some fields
@@ -92,12 +109,14 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
             throw new \Exception('The widget ['.$widget->getId().'] has no field to display.');
         }
 
-        //parse the field
-        foreach ($fields as $field) {
-            //get the value of the field
-            $attributeValue =  $this->getEntityAttributeValue($entity, $field);
-            //concantene values
-            $content .= $attributeValue;
+        if ($entity !== null) {
+            //parse the field
+            foreach ($fields as $field) {
+                //get the value of the field
+                $attributeValue =  $this->getEntityAttributeValue($entity, $field);
+                //concantene values
+                $content .= $attributeValue;
+            }
         }
 
         return $content;
@@ -107,12 +126,22 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
      * Get the content of the widget for the query mode
      *
      * @param Widget $widget
+     *
+     * @return string The Content
+     *
      * @throws \Exception
      */
     protected function getWidgetQueryContent(Widget $widget)
     {
-        $mode = $widget->getMode();
-        throw new \Exception('The mode ['.$mode.'] is not yet supported by the widget manager. Widget ID:['.$widget->getId().']');
+        $content = '';
+
+        $entities = $this->getWidgetQueryResults($widget);
+
+        foreach ($entities as $entity) {
+            $content .= $this->getEntityContent($widget, $entity). ' ';
+        }
+
+        return $content;
     }
 
     /**
