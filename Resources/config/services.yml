@@ -1,8 +1,17 @@
 services:
-
     victoire_core.twig.widget_redactor_manager:
-        class: Victoire\RedactorBundle\Widget\Manager\WidgetRedactorManager
-        arguments: [@service_container]
+        class: Victoire\Widget\RedactorBundle\Widget\Manager\WidgetRedactorManager
+        arguments: 
+            - "@service_container"
 
     widget_redactor_manager:
         alias: victoire_core.twig.widget_redactor_manager
+        
+    #alias to the entity
+    victoire.widget.redactor:
+        class: Victoire\Widget\RedactorBundle\Entity\WidgetRedactor
+    #alias to the form
+    victoire.widget.form.redactor:
+        class: Victoire\Widget\RedactorBundle\Form\WidgetRedactorType
+        tags:
+            - { name: form.type , alias: victoire_widget_form_redactor}

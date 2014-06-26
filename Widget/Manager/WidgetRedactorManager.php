@@ -1,121 +1,190 @@
 <?php
-namespace Victoire\RedactorBundle\Widget\Manager;
+namespace Victoire\Widget\RedactorBundle\Widget\Manager;
 
-use Victoire\RedactorBundle\Form\WidgetRedactorType;
-use Victoire\RedactorBundle\Entity\WidgetRedactor;
-use Victoire\Bundle\CoreBundle\Widget\Managers\ManagerInterface;
+use Victoire\Bundle\CoreBundle\Widget\Managers\BaseWidgetManager;
+use Victoire\Bundle\CoreBundle\Entity\Widget;
+use Victoire\Bundle\CoreBundle\Widget\Managers\WidgetManagerInterface;
 
 /**
  * CRUD operations on WidgetRedactor Widget
+ *
+ * The widget view has two parameters: widget and content
+ *
+ * widget: The widget to display, use the widget as you wish to render the view
+ * content: This variable is computed in this WidgetManager, you can set whatever you want in it and display it in the show view
+ *
+ * The content variable depends of the mode: static/businessEntity/entity/query
+ *
+ * The content is given depending of the mode by the methods:
+ *  getWidgetStaticContent
+ *  getWidgetBusinessEntityContent
+ *  getWidgetEntityContent
+ *  getWidgetQueryContent
+ *
+ * So, you can use the widget or the content in the show.html.twig view.
+ * If you want to do some computation, use the content and do it the 4 previous methods.
+ *
+ * If you just want to use the widget and not the content, remove the method that throws the exceptions.
+ *
+ * By default, the methods throws Exception to notice the developer that he should implements it owns logic for the widget
+ *
  */
-class WidgetRedactorManager implements ManagerInterface
+class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerInterface
 {
-protected $container;
-
     /**
-     * constructor
+     * Get the static content of the widget
      *
-     * @param ServiceContainer $container
+     * @param Widget $widget
+     * @return string The static content
      */
-    public function __construct($container)
+    protected function getWidgetStaticContent(Widget $widget)
     {
-        $this->container = $container;
+        $content = $widget->getContent();
+
+        return $content;
     }
 
     /**
-     * create a new WidgetRedactor
-     * @param Page   $page
-     * @param string $slot
-     *
-     * @return $widget
+     * Get the business entity content
+     * @param Widget $widget
+     * @return Ambigous <string, unknown, \Victoire\Bundle\CoreBundle\Widget\Managers\mixed, mixed>
      */
-    public function newWidget($page, $slot)
+    protected function getWidgetBusinessEntityContent(Widget $widget)
     {
-        $widget = new WidgetRedactor();
-        $widget->setPage($page);
-        $widget->setSlot($slot);
+        //get the entity
+        $entity = $widget->getEntity();
 
-        return $widget;
+        //display a generic content if no entity were specified
+        if ($entity === null) {
+            $content = $this->getWidgetGenericBusinessEntityContent($widget);
+        } else {
+            //get the content of the widget with its entity
+            $content = $this->getWidgetEntityContent($widget);
+        }
+
+        return $content;
     }
+
     /**
-     * render the WidgetRedactor
+     * Get the content of the widget by the entity linked to it
+     *
      * @param Widget $widget
      *
-     * @return widget show
-     */
-    public function render($widget)
-    {
-        return $this->container->get('victoire_templating')->render(
-            "VictoireRedactorBundle::show.html.twig",
-            array(
-                "widget" => $widget
-            )
-        );
-    }
-
-    /**
-     * render WidgetRedactor form
-     * @param Form           $form
-     * @param WidgetRedactor $widget
-     * @param BusinessEntity $entity
-     * @return form
-     */
-    public function renderForm($form, $widget, $entity = null)
-    {
-        return $this->container->get('victoire_templating')->render(
-            "VictoireRedactorBundle::edit.html.twig",
-            array(
-                "widget" => $widget,
-                'form'   => $form->createView(),
-                'id'     => $widget->getId(),
-                'entity' => $entity
-            )
-        );
-    }
-
-    /**
-     * create a form with given widget
-     * @param WidgetRedactor $widget
-     * @param string         $entityName
-     * @param string         $namespace
-     * @return $form
-     */
-    public function buildForm($widget, $entityName = null, $namespace = null)
-    {
-        $form = $this->container->get('form.factory')->create(new WidgetRedactorType($entityName, $namespace), $widget);
-
-        return $form;
-    }
-
-    /**
-     * create form new for WidgetRedactor
-     * @param Form           $form
-     * @param WidgetRedactor $widget
-     * @param string         $slot
-     * @param Page           $page
-     * @param string         $entity
+     * @return string
      *
-     * @return new form
+     * @throws \Exception
      */
-    public function renderNewForm($form, $widget, $slot, $page, $entity = null)
+    protected function getWidgetEntityContent(Widget $widget)
     {
+        //the result
+        $content = '';
 
-        return $this->container->get('victoire_templating')->render(
-            "VictoireRedactorBundle::new.html.twig",
-            array(
-                "widget"          => $widget,
-                'form'            => $form->createView(),
-                "slot"            => $slot,
-                "entity"          => $entity,
-                "renderContainer" => true,
-                "page"            => $page
-            )
-        );
+        $entity = $widget->getEntity();
+
+        if ($entity === null) {
+            throw new \Exception('The widget ['.$widget->getId().'] has no entity to display.');
+        }
+
+        $content = $this->getEntityContent($widget, $entity);
+
+        return $content;
     }
 
+    /**
+     * Get the content for an entity and a widget given
+     *
+     * @param Widget $widget
+     * @param unknown $entity
+     * @throws \Exception
+     * @return \Victoire\Bundle\CoreBundle\Widget\Managers\mixed
+     */
+    protected function getEntityContent(Widget $widget, $entity)
+    {
+        $content = '';
+
+        $fields = $widget->getFields();
+
+        //test that the widget has some fields
+        if (count($fields) === 0) {
+            throw new \Exception('The widget ['.$widget->getId().'] has no field to display.');
+        }
+
+        if ($entity !== null) {
+            //parse the field
+            foreach ($fields as $field) {
+                //get the value of the field
+                $attributeValue =  $this->getEntityAttributeValue($entity, $field);
+                //concantene values
+                $content .= $attributeValue;
+            }
+        }
+
+        return $content;
+    }
+
+    /**
+     * Get the content of the widget for the query mode
+     *
+     * @param Widget $widget
+     *
+     * @return string The Content
+     *
+     * @throws \Exception
+     */
+    protected function getWidgetQueryContent(Widget $widget)
+    {
+        $content = '';
+
+        $entities = $this->getWidgetQueryResults($widget);
+
+        foreach ($entities as $entity) {
+            $content .= $this->getEntityContent($widget, $entity). ' ';
+        }
+
+        return $content;
+    }
+
+    /**
+     * The name of the widget
+     *
+     * @return string
+     */
     public function getWidgetName()
     {
-        return 'redactor';
+        return 'Redactor';
     }
 
+    /**
+     * Get the generic name of the business EntityWidget
+     *
+     * @param Widget $widget
+     *
+     * @return string
+     *
+     * @throws \Exception
+     */
+    protected function getWidgetGenericBusinessEntityContent(Widget $widget)
+    {
+        //the result
+        $content = '';
+
+        $entityName = $widget->getBusinessEntityName();
+
+        $content = $entityName.' -> ';
+
+        $fields = $widget->getFields();
+
+        //test that the widget has some fields
+        if (count($fields) === 0) {
+            throw new \Exception('The widget ['.$widget->getId().'] has no field to display.');
+        }
+
+        //parse the field
+        foreach ($fields as $field) {
+            //concantene values
+            $content .= $field;
+        }
+
+        return $content;
+    }
 }

@@ -1,14 +1,10 @@
 <?php
 
-namespace Victoire\RedactorBundle\Form;
+namespace Victoire\Widget\RedactorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Victoire\Bundle\CoreBundle\Form\EntityProxyFormType;
 use Victoire\Bundle\CoreBundle\Form\WidgetType;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
 
 
 /**
@@ -16,24 +12,33 @@ use Symfony\Component\Form\FormEvent;
  */
 class WidgetRedactorType extends WidgetType
 {
-
     /**
      * define form fields
      * @param FormBuilderInterface $builder
      * @param array $options
      *
      * @return void
+     *
+     * @throws \Exception
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $namespace = $options['namespace'];
+        $entityName = $options['entityName'];
+
+        if ($entityName !== null) {
+            if ($namespace === null) {
+                throw new \Exception('The namespace is mandatory if the entity_name is given.');
+            }
+        }
+
         //choose form mode
-        if ($this->entity_name === null) {
+        if ($entityName === null) {
             //if no entity is given, we generate the static form
             $builder
                 ->add('content', null, array(
                         'attr' => array('class' => 'redactor')
                     ));
-
         }
 
         parent::buildForm($builder, $options);
@@ -47,13 +52,14 @@ class WidgetRedactorType extends WidgetType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        parent::setDefaultOptions($resolver);
+
         $resolver->setDefaults(array(
-            'data_class'         => 'Victoire\RedactorBundle\Entity\WidgetRedactor',
+            'data_class'         => 'Victoire\Widget\RedactorBundle\Entity\WidgetRedactor',
             'widget'             => 'redactor',
             'translation_domain' => 'victoire'
         ));
     }
-
 
     /**
      * get form name
@@ -61,6 +67,6 @@ class WidgetRedactorType extends WidgetType
      */
     public function getName()
     {
-        return 'appventus_victoirecorebundle_widgetredactortype';
+        return 'victoire_widget_form_redactor';
     }
 }

@@ -1,19 +1,6 @@
-{% block body %}
-
-{#
-   _   _   _   _   _   _   _
-  / \ / \ / \ / \ / \ / \ / \
- ( C ) o ) m ) m ) o ) n ) s )
-  \_/ \_/ \_/ \_/ \_/ \_/ \_/
-
-#}
-
-<div class="vic-widget vic-widget-redactor" id="widget-{{widget.id}}">
-{% block actions %}{{cms_widget_actions(widget)}}{% endblock actions %}
+{% extends 'VictoireCoreBundle:Widget:show.html.twig' %}
 
 {% block content %}
-{{widget.content|raw}}
+{{ parent() }}
+{# The parent display the content variable, you can do your custom display here #}
 {% endblock content %}
-</div>
-
-{% endblock body %}

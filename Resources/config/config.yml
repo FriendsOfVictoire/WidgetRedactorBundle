@@ -1,11 +1,11 @@
 victoire_core:
     widgets:
         redactor:
-            class: "Victoire\RedactorBundle\Entity\WidgetRedactor"
+            class: "Victoire\Widget\RedactorBundle\Entity\WidgetRedactor"
             name: redactor
 
 jms_translation:
    configs:
         victoire_redactor_bundle:
-            dirs: ["@VictoireRedactorBundle"]
-            output_dir: "@VictoireRedactorBundle/Resources/translations"
+            dirs: ["@VictoireWidgetRedactorBundle"]
+            output_dir: "@VictoireWidgetRedactorBundle/Resources/translations"

@@ -1,8 +1,8 @@
 <?php
-namespace Victoire\RedactorBundle\Entity;
+namespace Victoire\Widget\RedactorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Victoire\TextBundle\Entity\WidgetText;
+use Victoire\Widget\TextBundle\Entity\WidgetText;
 
 /**
  * WidgetText
@@ -12,5 +12,5 @@ use Victoire\TextBundle\Entity\WidgetText;
  */
 class WidgetRedactor extends WidgetText
 {
-    use \Victoire\Bundle\CoreBundle\Entity\Traits\WidgetTrait;
+
 }
