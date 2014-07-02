@@ -3,6 +3,7 @@ services:
         class: Victoire\Widget\RedactorBundle\Widget\Manager\WidgetRedactorManager
         arguments: 
             - "@service_container"
+            - "Redactor"
 
     widget_redactor_manager:
         alias: victoire_core.twig.widget_redactor_manager

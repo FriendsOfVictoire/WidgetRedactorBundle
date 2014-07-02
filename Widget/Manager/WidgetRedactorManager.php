@@ -145,16 +145,6 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
     }
 
     /**
-     * The name of the widget
-     *
-     * @return string
-     */
-    public function getWidgetName()
-    {
-        return 'Redactor';
-    }
-
-    /**
      * Get the generic name of the business EntityWidget
      *
      * @param Widget $widget
