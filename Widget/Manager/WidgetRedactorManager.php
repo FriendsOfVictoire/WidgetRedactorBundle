@@ -41,7 +41,7 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
     {
         $content = $widget->getContent();
 
-        return $content;
+        return html_entity_decode($content);
     }
 
     /**
@@ -62,7 +62,7 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
             $content = $this->getWidgetEntityContent($widget);
         }
 
-        return $content;
+        return html_entity_decode($content);
     }
 
     /**
@@ -87,7 +87,7 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
 
         $content = $this->getEntityContent($widget, $entity);
 
-        return $content;
+        return html_entity_decode($content);
     }
 
     /**
@@ -141,7 +141,7 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
             $content .= $this->getEntityContent($widget, $entity). ' ';
         }
 
-        return $content;
+        return html_entity_decode($content);
     }
 
     /**
@@ -175,6 +175,6 @@ class WidgetRedactorManager extends BaseWidgetManager implements WidgetManagerIn
             $content .= $field;
         }
 
-        return $content;
+        return html_entity_decode($content);
     }
 }
