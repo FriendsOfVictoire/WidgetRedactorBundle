@@ -21,7 +21,7 @@ function initRedactor(item_id, buttons, plugins, lang, autoresize){
 
                     openDGDialog(Routing.generate('VictoireMediaBundle_chooser'), 1050, 600, function(param){
                         html = '<p><img id="media-' + dialogWin.returnedValue.id + '" src="' + dialogWin.returnedValue.imgpath + '" /></p>';
-                        $('.redactor').insertHtml(html);
+                        $vic(item_id).redactor('getObject').insertHtml(html);
                     });
                 }
             }
