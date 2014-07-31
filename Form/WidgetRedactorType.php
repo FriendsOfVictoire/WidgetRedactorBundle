@@ -6,7 +6,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Victoire\Bundle\CoreBundle\Form\WidgetType;
 
-
 /**
  * WidgetRedactor form type
  */
@@ -23,14 +22,6 @@ class WidgetRedactorType extends WidgetType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $namespace = $options['namespace'];
-        $entityName = $options['entityName'];
-
-        if ($entityName !== null) {
-            if ($namespace === null) {
-                throw new \Exception('The namespace is mandatory if the entity_name is given.');
-            }
-        }
 
         //choose form mode
         if ($entityName === null) {
