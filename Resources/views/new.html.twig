@@ -1,11 +1,16 @@
 {% extends 'VictoireCoreBundle:Widget:new.html.twig' %}
 
-{% block form %}
-  {{ parent() }}
+{% block form_static %}
+    <div id="picker-{{ form.mode.vars.data }}" class="vic-tab-pane vic-active">
+        {{ form_start(form) }}
+            {{ form_widget(form.content) }}
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        initRedactor('.redactor');
-    });
-</script>
-{% endblock form %}
+    <script type="text/javascript">
+        $vic(document).ready(function(){
+            initRedactor('.redactor');
+        });
+    </script>
+{% endblock form_static %}
