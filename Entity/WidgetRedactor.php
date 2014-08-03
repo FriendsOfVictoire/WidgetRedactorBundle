@@ -7,7 +7,7 @@ use Victoire\Widget\TextBundle\Entity\WidgetText;
 /**
  * WidgetText
  *
- * @ORM\Table("cms_widget_redactor")
+ * @ORM\Table("vic_widget_redactor")
  * @ORM\Entity
  */
 class WidgetRedactor extends WidgetText
