@@ -1,13 +1,8 @@
 services:
-    victoire_core.twig.widget_redactor_manager:
-        class: Victoire\Widget\RedactorBundle\Widget\Manager\WidgetRedactorManager
-        arguments: 
-            - "@service_container"
-            - "Redactor"
-
-    widget_redactor_manager:
-        alias: victoire_core.twig.widget_redactor_manager
-        
+    victoire_core.widget_redactor_content_resolver:
+        class: Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver
+        tags:
+            - { name: victoire_widget.widget_content_resolver, alias: Redactor }
     #alias to the entity
     victoire.widget.redactor:
         class: Victoire\Widget\RedactorBundle\Entity\WidgetRedactor

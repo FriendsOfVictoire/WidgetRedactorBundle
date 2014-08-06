@@ -47,7 +47,7 @@ class WidgetRedactorType extends WidgetType
 
         $resolver->setDefaults(array(
             'data_class'         => 'Victoire\Widget\RedactorBundle\Entity\WidgetRedactor',
-            'widget'             => 'redactor',
+            'widget'             => 'Redactor',
             'translation_domain' => 'victoire'
         ));
     }
