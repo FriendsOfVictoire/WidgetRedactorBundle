@@ -9,15 +9,13 @@ use Symfony\Component\DependencyInjection\Loader;
 
 /**
  *
- * @author Thomas Beaujean
- *
  */
 class VictoireWidgetRedactorExtension extends Extension
 {
     /**
      * Load extension
      *
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
