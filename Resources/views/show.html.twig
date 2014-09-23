@@ -1,6 +1,5 @@
 {% extends 'VictoireCoreBundle:Widget:show.html.twig' %}
 
 {% block content %}
-{{ parent() }}
-{# The parent display the content variable, you can do your custom display here #}
+{{ content|raw|nl2br }}
 {% endblock content %}
