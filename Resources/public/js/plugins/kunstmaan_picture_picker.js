@@ -1,13 +1,12 @@
 if (typeof RedactorPlugins === 'undefined') var RedactorPlugins = {};
 
 RedactorPlugins.media = {
-    imageEdit: function(e)
+    imageEdit: function(img)
     {
-        var $el = $(e.target);
-        var parent = $el.parent();
-        var id = $el.attr('id').replace('media-', '');
+        var id = $vic(img).attr('id').replace('media-', '');
 
-        openDGDialog(Routing.generate('VictoireMediaBundle_media_show', { mediaId: id }), 1050, 600);
+        openDGDialog(Routing.generate('VictoireMediaBundle_chooser', { mediaId: id }), 1050, 600, function(param){
+            $vic(img).attr('src', dialogWin.returnedValue.imgpath);
+        });
     }
-
 }
