@@ -1,30 +1,30 @@
 {
-    "name": "appventus/redactor-widget",
+    "name": "friendsofvictoire/redactor-widget",
     "type": "symfony-bundle",
-    "description": "Victoire Cms Redactor component",
-    "keywords": ["cms", "victoire", "redactor"],
-    "homepage": "http://appventus.com",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Paul Andrieux",
-            "email": "paul@appventus.com"
-        },
-        {
-            "name": "Leny Bernard",
-            "email": "leny@appventus.com"
-        }
+    "description": "Victoire DCMS Redactor widget",
+    "keywords": [
+        "DCMS",
+        "Victoire",
+        "Redactor",
+        "widget",
+        "FriendsofVictoire"
     ],
+    "license": "proprietary",
     "require": {
-        "php"                                 : ">=5.3.3",
-        "symfony/framework-bundle"            : "~2.3",
-        "victoire/victoire"                   : "dev-master"
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "~2.8|~3.0",
+        "victoire/victoire": "~1.5"
     },
     "autoload": {
-        "psr-0": { "Victoire\\Widget\\RedactorBundle": "" }
+        "psr-0": {
+            "Victoire\\Widget\\RedactorBundle": ""
+        }
     },
     "minimum-stability": "dev",
-
-
-    "target-dir": "Victoire/Widget/RedactorBundle"
+    "target-dir": "Victoire/Widget/RedactorBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.5.x-dev"
+        }
+    }
 }

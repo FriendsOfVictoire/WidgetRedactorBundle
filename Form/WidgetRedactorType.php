@@ -3,7 +3,7 @@
 namespace Victoire\Widget\RedactorBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Victoire\Bundle\CoreBundle\Form\WidgetType;
 
 /**
@@ -37,26 +37,16 @@ class WidgetRedactorType extends WidgetType
     }
 
     /**
-     * bind form to WidgetRedactor entity
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'data_class'         => 'Victoire\Widget\RedactorBundle\Entity\WidgetRedactor',
             'widget'             => 'Redactor',
             'translation_domain' => 'victoire'
         ));
-    }
-
-    /**
-     * get form name
-     * @return string type
-     */
-    public function getName()
-    {
-        return 'victoire_widget_form_redactor';
     }
 }
