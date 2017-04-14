@@ -5,7 +5,7 @@ RedactorPlugins.media = {
     {
         var id = $vic(img).attr('id').replace('media-', '');
 
-        openDGDialog(Routing.generate('VictoireMediaBundle_chooser', { mediaId: id }), 1050, 600, function(param){
+        openDGDialog(Routing.generate('VictoireMediaBundle_chooser', { mediaId: id, _locale: locale }), 1050, 600, function(param){
             $vic(img).attr('src', dialogWin.returnedValue.imgpath);
         });
     }
